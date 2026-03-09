@@ -41,6 +41,38 @@ html {
   user-select: none;
 }
 
+.bomb {
+  position: fixed;
+  top: -80px;
+  font-size: 2.5rem;
+  pointer-events: none;
+  z-index: 99998;
+  animation: bombDrop linear forwards;
+  user-select: none;
+}
+
+@keyframes bombDrop {
+  0%   { top: -80px; opacity: 1; transform: rotate(0deg); }
+  80%  { opacity: 1; transform: rotate(20deg); }
+  90%  { opacity: 1; transform: rotate(-10deg) scale(1); }
+  100% { top: 110vh; opacity: 0; transform: rotate(15deg) scale(0.8); }
+}
+
+.explosion {
+  position: fixed;
+  font-size: 3rem;
+  pointer-events: none;
+  z-index: 99998;
+  animation: explode 0.6s ease forwards;
+  user-select: none;
+}
+
+@keyframes explode {
+  0%   { opacity: 1; transform: scale(0.5); }
+  50%  { opacity: 1; transform: scale(2); }
+  100% { opacity: 0; transform: scale(2.5); }
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
