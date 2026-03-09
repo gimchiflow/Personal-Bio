@@ -80,6 +80,18 @@ const observer = new IntersectionObserver((entries) => {
 fadeEls.forEach(el => observer.observe(el));
 
 // ============================
+// Hero Background Fade on Scroll
+// ============================
+const heroBg = document.querySelector('.hero-bg');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroHeight = document.querySelector('.hero').offsetHeight;
+  const opacity = Math.max(0, 1 - scrollY / (heroHeight * 0.6));
+  heroBg.style.opacity = opacity;
+});
+
+// ============================
 // Active Nav Link on Scroll
 // ============================
 const sections = document.querySelectorAll('section[id]');
