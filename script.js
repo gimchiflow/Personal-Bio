@@ -1,4 +1,14 @@
 // ============================
+// Missile Cursor
+// ============================
+const cursor = document.getElementById('missile-cursor');
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+// ============================
 // Mobile Nav Toggle
 // ============================
 const navToggle = document.querySelector('.nav-toggle');
