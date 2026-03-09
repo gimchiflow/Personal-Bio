@@ -88,10 +88,27 @@ const heroInner = document.querySelector('.hero-inner');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   const heroHeight = document.querySelector('.hero').offsetHeight;
-  const opacity = Math.max(0, 1 - scrollY / (heroHeight * 0.6));
-  heroBgs.forEach(bg => bg.style.opacity = opacity);
-  heroInner.style.opacity = opacity;
+  const heroOpacity = Math.max(0, 1 - scrollY / (heroHeight * 0.6));
+  heroBgs.forEach(bg => bg.style.opacity = heroOpacity);
+  heroInner.style.opacity = heroOpacity;
   heroInner.style.transform = `translateY(${scrollY * 0.3}px)`;
+
+  // Fade all sections as they scroll out of view
+  document.querySelectorAll('.section, .section-alt').forEach(section => {
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    // Fade out as section scrolls above viewport
+    if (rect.bottom < windowHeight * 0.2) {
+      const fadeOut = Math.max(0, rect.bottom / (windowHeight * 0.2));
+      section.style.opacity = fadeOut;
+    // Fade in as section enters viewport
+    } else if (rect.top > windowHeight * 0.85) {
+      const fadeIn = Math.max(0, 1 - (rect.top - windowHeight * 0.85) / (windowHeight * 0.15));
+      section.style.opacity = fadeIn;
+    } else {
+      section.style.opacity = 1;
+    }
+  });
 });
 
 // ============================
