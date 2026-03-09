@@ -82,14 +82,14 @@ fadeEls.forEach(el => observer.observe(el));
 // ============================
 // Hero Background Fade on Scroll
 // ============================
-const heroBg = document.querySelector('.hero-bg');
+const heroBgs = document.querySelectorAll('.hero-bg');
 const heroInner = document.querySelector('.hero-inner');
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   const heroHeight = document.querySelector('.hero').offsetHeight;
   const opacity = Math.max(0, 1 - scrollY / (heroHeight * 0.6));
-  heroBg.style.opacity = opacity;
+  heroBgs.forEach(bg => bg.style.opacity = opacity);
   heroInner.style.opacity = opacity;
   heroInner.style.transform = `translateY(${scrollY * 0.3}px)`;
 });
